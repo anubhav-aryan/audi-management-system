@@ -33,13 +33,10 @@ export async function POST(req: NextRequest) {
         });
 
         const location = updatedSeat.location;
-        const [row, column] = location.split("-");
-        const seatMessage = `Row ${row} Column ${column}`;
 
-        return NextResponse.json({ message: "Seat assigned!", seat: seatMessage }, { status: 404 });
+        return NextResponse.json({ message: "Seat assigned!", seat: location }, { status: 200 });
     } catch (error: any) {
-        return NextResponse.json({ message: error.message }, { status: 404 });
-
+        return NextResponse.json({ message: "Your seat has already been assigned!" }, { status: 400 });
     }
 };
 
@@ -56,15 +53,17 @@ export async function GET() {
             }
         });
 
-        // Create 44 seats in each row
-        for (let j = 1; j <= 44; j++) {
-            await prisma.seat.create({
-                data: {
-                    location: `${i}-${j}`,
-                    rowId: row.id
-                }
-            });
-        }
+        // Prepare data for 44 seats in the row
+        const seatsData = Array.from({ length: 44 }, (_, j) => ({
+            location: `Row ${i} Column ${j + 1}`,
+            rowId: row.id
+        }));
+
+        // Create 44 seats in the row in bulk
+        await prisma.seat.createMany({
+            data: seatsData
+        });
     }
+
     return NextResponse.json({ message: "Auditorium created!" });
 };
