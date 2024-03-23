@@ -2,7 +2,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import Image from "next/image";
+function Navbar(){
+  return (
+    <nav className="w-full flex bg-black justify-between items-center rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">
+     <Image width={68} height={68} src={"/VIT.svg"} alt="VIT LOGO"/>
+     <h1 className="text-white text-3xl">University Day</h1>
+     <Image width={68} height={68} src={"/DSW_LOGO.webp"} alt="DSW LOGO"/>
+    </nav>
+  )
+}
 
 export default function Home() {
   const [regNum, setRegNo] = useState("");
@@ -34,15 +43,17 @@ export default function Home() {
   },[])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-20 gap-[1rem]">
+    <main className="flex min-h-screen flex-col items-center justify-between p-[1rem] gap-[1rem] bg-black">
+      <Navbar/>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
           value={regNum}
           onChange={(e) => setRegNo(e.target.value)}
           placeholder="Enter reg number"
+          className="w-fit bg-black rounded-[1rem] px-[1rem] text-white"
         />
-        <button type="submit">Submit</button>
+        <button type="submit" className="text-white ml-[1rem] rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">Submit</button>
       </form>
       <section className="w-full grid text-[4px] overflow-x-scroll gap-[0.5rem]" style={
         {
@@ -57,12 +68,12 @@ export default function Home() {
           cols.map((col:number,idxC:number)=>{
            if(allSeats?.includes(`R${row}C${col}`)){
             return (
-              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-[#000] bg-black `} data-seat={`R${row}C${col}`}>     
+              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-[#000]  ${seat==`R${row}C${col}`?'bg-blue-700':'bg-blue-300'}`} data-seat={`R${row}C${col}`}>     
               </div>
             )
            }
             return (
-              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-[#000] `} data-seat={`R${row}C${col}`}>     
+              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-blue-300 `} data-seat={`R${row}C${col}`}>     
               </div>
             )
           })
@@ -70,7 +81,7 @@ export default function Home() {
         })
       }
       </section>
-      {seat && <div>{seat}</div>}
+      {seat && <div className="text-white">Your seat is:{seat}</div>}
     </main>
   );
 }
