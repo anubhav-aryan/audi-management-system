@@ -16,7 +16,7 @@ datasource db {
 model Seat {
   id           Int        @id @default(autoincrement())
   name         String     @map("name")
-  regNum       String?    @unique @map("reg_no")
+  regNum       String?    @map("reg_num") @unique
   seat         String     @map("seat")
   auditoriumId String     @map("auditorium_id")
   isBooked     Boolean    @default(false) @map("is_booked")
