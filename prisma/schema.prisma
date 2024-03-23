@@ -14,22 +14,24 @@ datasource db {
 }
 
 model Seat {
-  id       Int     @id @default(autoincrement())
-  location String
-  regNo    String? @unique @map("reg_no")
-  rowId    Int     @map("row_id")
-  Row      Row     @relation(fields: [rowId], references: [id])
-}
-
-model Row {
   id           Int        @id @default(autoincrement())
-  seats        Seat[]
+  name         String     @map("name")
+  regNum       String?    @unique @map("reg_no")
+  seat         String     @map("seat")
   auditoriumId String     @map("auditorium_id")
+  isBooked     Boolean    @default(false) @map("is_booked")
   Auditorium   Auditorium @relation(fields: [auditoriumId], references: [id])
 }
 
+// model Row {
+//   id           Int        @id @default(autoincrement())
+//   seats        Seat[]
+//   auditoriumId String     @map("auditorium_id")
+//   Auditorium   Auditorium @relation(fields: [auditoriumId], references: [id])
+// }
+
 model Auditorium {
-  id   String @id @default(cuid())
-  Name String @unique @map("name") @default("Anna Auditorium")
-  rows Row[]
+  id    String @id @default(cuid())
+  Name  String @unique @default("Anna Auditorium") @map("name")
+  seats Seat[]
 }
