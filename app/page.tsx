@@ -55,25 +55,36 @@ export default function Home() {
         />
         <button type="submit" className="text-white ml-[1rem] rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">Submit</button>
       </form>
-      <section className="w-full grid text-[4px] overflow-x-scroll gap-[0.5rem]" style={
+      <section className="w-full grid  overflow-x-scroll gap-[10px]" style={
         {
           display:'grid',
           gridTemplateColumns: 'repeat(44, minmax(0, 1fr))'
         }
       }>
+       
      
       {
+        
         rows.map((row:number,idxR:number)=>{
          return (
           cols.map((col:number,idxC:number)=>{
            if(allSeats?.includes(`R${row}C${col}`)){
             return (
-              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-[#000]  ${seat==`R${row}C${col}`?'bg-blue-700':'bg-blue-300'}`} data-seat={`R${row}C${col}`}>     
+              <div className="flex flex-col justify-center items-center gap-[8px] w-fit aspect-square">
+  <div key={row+col} className={` inline aspect-square w-[14px]   border-[1px] text-white border-[#000]  ${seat==`R${row}C${col}`?'bg-blue-700':'bg-blue-300'}`} data-seat={`R${row}C${col}`}>     
+  
+             </div>
+             <p className="text-white text-[.4rem]">{`R${row}C${col}`}</p>
               </div>
+            
             )
            }
             return (
-              <div key={row+col} className={` inline aspect-square w-[10px] border-[1px] border-blue-300 `} data-seat={`R${row}C${col}`}>     
+              <div className="flex flex-col justify-center items-center gap-[5px] w-fit aspect-square">
+                <div  key={row+col} className={` inline aspect-square w-[14px]  border-[1px] text-white border-blue-300 `} data-seat={`R${row}C${col}`}>     
+                
+             </div>
+             <p className="text-white text-[.4rem]">{`R${row}C${col}`}</p>
               </div>
             )
           })
