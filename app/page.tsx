@@ -6,9 +6,9 @@ import Image from "next/image";
 function Navbar() {
   return (
     <nav className="w-full flex bg-black justify-between items-center rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">
-      <Image width={68} height={68} src={"/VIT.svg"} alt="VIT LOGO" />
+      <Image width={200} height={200} src={"/VIT.svg"} alt="VIT LOGO" />
       <h1 className="text-white text-3xl">University Day</h1>
-      <Image width={68} height={68} src={"/DSW_LOGO.webp"} alt="DSW LOGO" />
+      <Image width={100} height={100} src={"/DSW_LOGO.webp"} alt="DSW LOGO" />
     </nav>
   );
 }
