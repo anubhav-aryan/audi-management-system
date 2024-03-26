@@ -70,7 +70,6 @@ export default function Home() {
           return cols.map((col: number, idxC: number) => {
             if (allSeats?.includes(`R${row}C${col}`)) {
               return (
-                // eslint-disable-next-line react/jsx-key
                 <div className="flex flex-col justify-center items-center gap-[8px] w-fit aspect-square">
                   <div
                     key={row + col}
@@ -84,7 +83,6 @@ export default function Home() {
               );
             }
             return (
-              // eslint-disable-next-line react/jsx-key
               <div className="flex flex-col justify-center items-center gap-[5px] w-fit aspect-square">
                 <div
                   key={row + col}
