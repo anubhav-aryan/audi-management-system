@@ -7,7 +7,7 @@ export async function POST(req: NextRequest) {
 
         const regNoFormat = /^[0-9]{2}[A-Z]{3}[0-9]{4}$/;
         if (!regNoFormat.test(regNum)) {
-            return NextResponse.json({ message: "Invalid regNo format!" }, { status: 400 });
+            return NextResponse.json({ message: "Invalid Registration Number Format!" }, { status: 400 });
         }
 
         const seat = await prisma.seat.findFirst({
