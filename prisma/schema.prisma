@@ -17,9 +17,8 @@ model Seat {
   id           Int        @id @default(autoincrement())
   name         String     @map("name")
   regNum       String?    @unique @map("reg_num")
-  seat         String     @map("seat") @unique
+  seat         Int     @map("seat") @unique
   auditoriumId String     @map("auditorium_id")
-  isBooked     Boolean    @default(false) @map("is_booked")
   Auditorium   Auditorium @relation(fields: [auditoriumId], references: [id])
 }
 

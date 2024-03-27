@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
 
         const location = seat.seat;
 
-        seat.isBooked = true;
 
         await prisma.seat.update({
             where: {

@@ -19,6 +19,7 @@ export async function GET(_req: NextRequest) {
 
         return NextResponse.json({ message: 'Data imported successfully' });
     } catch (error) {
+        console.log(error)
         return NextResponse.json({ error: 'An error occurred while importing data' }, { status: 400 });
     }
 }
