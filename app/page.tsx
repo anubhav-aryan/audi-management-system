@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Image from "next/image";
+
 function Navbar() {
   return (
     <nav className="w-full flex bg-black justify-between items-center rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">
-      <Image width={200} height={200} src={"/VIT.svg"} alt="VIT LOGO" />
-      <h1 className="text-white text-3xl">University Day</h1>
+      <img className="w-24 h-24" src={"/VIT.svg"} alt="VIT LOGO"/>
+      <h1 className="text-white md:text-3xl text-lg">University Day</h1>
       <Image width={100} height={100} src={"/DSW_LOGO.webp"} alt="DSW LOGO" />
     </nav>
   );
@@ -42,14 +43,17 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-[1rem] gap-[1rem] bg-black">
-      <Navbar />
+    <div className=" bg-black min-h-screen ">
+    <Navbar />
+
+    <div className="flex flex-col items-center justify-center p-[1rem] h-screen -translate-y-32 gap-12">
       <form onSubmit={handleSubmit}>
+        <div className=""></div>
         <input
           type="text"
           value={regNum}
           onChange={(e) => setRegNo(e.target.value)}
-          placeholder="Enter reg number"
+          placeholder="Enter Registration Number"
           className="w-fit bg-black rounded-[1rem] px-[1rem] text-white"
         />
         <button
@@ -59,7 +63,7 @@ export default function Home() {
           Submit
         </button>
       </form>
-      <section
+      {/* <section
         className="w-full grid  overflow-x-scroll gap-[10px]"
         style={{
           display: "grid",
@@ -96,8 +100,9 @@ export default function Home() {
             );
           });
         })}
-      </section>
-      {seat && <div className="text-white">Your seat is:{seat}</div>}
-    </main>
+      </section> */}
+      {seat && <div className="text-white">Your seat is: {seat}</div>}
+    </div>
+    </div>
   );
 }

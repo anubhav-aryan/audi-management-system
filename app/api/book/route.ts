@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ message: "Seat found!", seat: location }, { status: 200 });
     } catch (error: any) {
-        console.log(error)
         return NextResponse.json({ message: "Your seat has already been assigned!" }, { status: 400 });
     }
 };
