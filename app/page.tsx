@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { ProctorTable } from "@prisma/client";
 
 function Navbar() {
   return (
@@ -16,37 +17,37 @@ function Navbar() {
 
 export default function Home() {
   const [regNum, setRegNo] = useState("");
-  const [seat, setSeat] = useState<null | string>(null);
+  const [proctor, setProctor] = useState<null | ProctorTable>(null);
   const [allSeats, setAllSeats] = useState<any[]>([]);
   const cols = Array.from({ length: 44 }, (_, i) => i + 1);
   const rows = Array.from({ length: 33 }, (_, i) => i + 1);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
-      const res = await axios.post("/api/book", { regNum });
-      setSeat(JSON.stringify(res.data.seat));
-      setRegNo("");
+      const res = await axios.post("/api/find", { regNum });
+      setProctor(res.data.proctor as ProctorTable);
     } catch (error: any) {
       toast.error(error.response.data.message);
     }
   };
-  useEffect(() => {
-    const f = async () => {
-      const res = await axios.get("/api/book");
-      const all = res.data.seats.map((seat: any, idx: number) => {
-        if (seat.isBooked) return seat.seat;
-      });
-      setAllSeats(all);
-      console.log(all);
-    };
-    f();
-  }, []);
+  // useEffect(() => {
+  //   const f = async () => {
+  //     const res = await axios.get("/api/book");
+  //     const all = res.data.seats.map((seat: any, idx: number) => {
+  //       if (seat.isBooked) return seat.seat;
+  //     });
+  //     setAllSeats(all);
+  //     console.log(all);
+  //   };
+  //   f();
+  // }, []);
 
   return (
     <div className=" bg-black min-h-screen ">
     <Navbar />
 
     <div className="flex flex-col items-center justify-center p-[1rem] h-screen -translate-y-32 gap-12">
+      <div className="text-2xl font-semibold text-center">Kindly Enter Your Registration Number</div>
       <form onSubmit={handleSubmit}>
         <div className=""></div>
         <input
@@ -54,7 +55,7 @@ export default function Home() {
           value={regNum}
           onChange={(e) => setRegNo(e.target.value)}
           placeholder="Enter Registration Number"
-          className="w-fit bg-black rounded-[1rem] px-[1rem] text-white"
+          className="w-fit bg-black rounded-[1rem] px-[1rem] text-white border border-b border-neutral-500 p-1"
         />
         <button
           type="submit"
@@ -63,45 +64,11 @@ export default function Home() {
           Submit
         </button>
       </form>
-      {/* <section
-        className="w-full grid  overflow-x-scroll gap-[10px]"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(44, minmax(0, 1fr))",
-        }}
-      >
-        {rows.map((row: number, idxR: number) => {
-          return cols.map((col: number, idxC: number) => {
-            if (allSeats?.includes(`R${row}C${col}`)) {
-              return (
-                // eslint-disable-next-line react/jsx-key
-                <div className="flex flex-col justify-center items-center gap-[8px] w-fit aspect-square">
-                  <div
-                    key={row + col}
-                    className={` inline aspect-square w-[14px]   border-[1px] text-white border-[#000]  ${
-                      seat == `R${row}C${col}` ? "bg-blue-700" : "bg-blue-300"
-                    }`}
-                    data-seat={`R${row}C${col}`}
-                  ></div>
-                  <p className="text-white text-[.4rem]">{`R${row}C${col}`}</p>
-                </div>
-              );
-            }
-            return (
-              // eslint-disable-next-line react/jsx-key
-              <div className="flex flex-col justify-center items-center gap-[5px] w-fit aspect-square">
-                <div
-                  key={row + col}
-                  className={` inline aspect-square w-[14px]  border-[1px] text-white border-blue-300 `}
-                  data-seat={`R${row}C${col}`}
-                ></div>
-                <p className="text-white text-[.4rem]">{`R${row}C${col}`}</p>
-              </div>
-            );
-          });
-        })}
-      </section> */}
-      {seat && <div className="text-white">Your seat is: {seat}</div>}
+      {proctor && <div className="text-white flex flex-col gap-4 border border-b border-neutral-500 p-4 rounded-lg">
+        <div>Your proctor name is: {proctor.proctorName}</div>
+        <div>Your proctor cabin is: {proctor.cabin}</div>
+        <div>Your proctor phone number is: {proctor.phoneNumber}</div>
+      </div>}
     </div>
     </div>
   );

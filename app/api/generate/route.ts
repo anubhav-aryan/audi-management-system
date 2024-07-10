@@ -4,15 +4,18 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(_req: NextRequest) {
     try {
-        const auditorium = await prisma.auditorium.create({
-            data: {}
-        })
-
-        await prisma.seat.createMany({
-            data: data.map((seat) => {
+        await prisma.proctorTable.createMany({
+            data: data.map((proctor) => {
                 return {
-                    auditoriumId: auditorium.id,
-                    ...seat
+                    regNo: proctor.regNo,
+                    studentName: proctor.studentName,
+                    gender: proctor.gender,
+                    programmeName: proctor.programmeName,
+                    branchName: proctor.branchName,
+                    employeeId: proctor.employeeId.toString(),
+                    proctorName: proctor.proctorName,
+                    cabin: proctor.cabin,
+                    phoneNumber: proctor.phoneNumber.toString(),
                 }
             })
         })

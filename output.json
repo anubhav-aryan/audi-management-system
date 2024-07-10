@@ -1,4 +1,4 @@
-const data = [
+[
     {
         "regNo": "24BID0025",
         "studentName": "SHREYA K PILLAI",
@@ -7821,5 +7821,3 @@ const data = [
         "phoneNumber": "-"
     }
 ]
-
-export default data

@@ -10,34 +10,18 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid Registration Number Format!" }, { status: 400 });
         }
 
-        const seat = await prisma.seat.findFirst({
+        const proctor = await prisma.proctorTable.findFirst({
             where: {
-                regNum
+                regNo: regNum
             },
         });
 
-        if (!seat) {
-            return NextResponse.json({ message: "No seat found!" }, { status: 404 });
+        if (!proctor) {
+            return NextResponse.json({ message: "No proctor found!" }, { status: 404 });
         }
 
-        const location = seat.seat;
-
-
-        await prisma.seat.update({
-            where: {
-                regNum
-            },
-            data: seat
-        });
-
-        return NextResponse.json({ message: "Seat found!", seat: location }, { status: 200 });
+        return NextResponse.json({ message: "Seat found!", proctor: proctor }, { status: 200 });
     } catch (error: any) {
         return NextResponse.json({ message: "Your seat has already been assigned!" }, { status: 400 });
     }
-};
-
-export async function GET() {
-    const seats = await prisma.seat.findMany({})
-
-    return NextResponse.json({ message: "Seats found!", seats });
 };
