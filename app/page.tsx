@@ -8,7 +8,7 @@ function Navbar() {
   return (
     <nav className="w-full flex bg-black justify-between items-center rounded-[1rem] border-[2px] border-gray-500 px-[1rem]">
       <img className="w-24 h-24" src={"/VIT.svg"} alt="VIT LOGO"/>
-      <h1 className="text-white md:text-3xl text-lg">University Day</h1>
+      <h1 className="text-white md:text-3xl text-lg">Proctor Details</h1>
       <Image width={100} height={100} src={"/DSW_LOGO.webp"} alt="DSW LOGO" />
     </nav>
   );
