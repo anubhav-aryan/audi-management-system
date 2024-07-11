@@ -16,10 +16,7 @@ datasource db {
 model ProctorTable {
   id            String @id @default(cuid())
   regNo         String
-  studentName   String 
-  gender        String 
-  programmeName String
-  branchName    String
+  studentName   String
   proctorName   String
   employeeId    String
   cabin         String

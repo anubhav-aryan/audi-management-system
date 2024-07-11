@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Load the Excel file
-excel_file = 'proctor_details.xlsx'
+excel_file = 'proctor_details(1).xlsx'
 df = pd.read_excel(excel_file)
 
 # Convert the DataFrame to a list of dictionaries

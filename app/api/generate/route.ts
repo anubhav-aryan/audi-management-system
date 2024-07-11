@@ -9,9 +9,6 @@ export async function GET(_req: NextRequest) {
                 return {
                     regNo: proctor.regNo,
                     studentName: proctor.studentName,
-                    gender: proctor.gender,
-                    programmeName: proctor.programmeName,
-                    branchName: proctor.branchName,
                     employeeId: proctor.employeeId.toString(),
                     proctorName: proctor.proctorName,
                     cabin: proctor.cabin,
