@@ -11,7 +11,7 @@ export async function GET(_req: NextRequest) {
                     studentName: proctor.studentName,
                     employeeId: proctor.employeeId.toString(),
                     proctorName: proctor.proctorName,
-                    cabin: proctor.cabin,
+                    cabin: proctor.cabin.toString(),
                     phoneNumber: proctor.phoneNumber.toString(),
                 }
             })
