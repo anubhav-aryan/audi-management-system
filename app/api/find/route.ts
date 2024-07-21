@@ -20,8 +20,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "No proctor found!" }, { status: 404 });
         }
 
-        return NextResponse.json({ message: "Seat found!", proctor: proctor }, { status: 200 });
+        return NextResponse.json({ message: "No Proctor Found!", proctor: proctor }, { status: 200 });
     } catch (error: any) {
-        return NextResponse.json({ message: "Your seat has already been assigned!" }, { status: 400 });
+        return NextResponse.json({ message: "No Proctor Found!" }, { status: 400 });
     }
 };
