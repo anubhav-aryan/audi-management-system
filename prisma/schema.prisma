@@ -22,3 +22,14 @@ model ProctorTable {
   cabin         String
   phoneNumber   String
 }
+
+model ConvocationTable {
+  id String @id @default(cuid())
+  studentName String
+  regNo String
+  convocationNum String
+  session String
+  programmeGroup String
+  programmeName String
+  schoolName String
+}

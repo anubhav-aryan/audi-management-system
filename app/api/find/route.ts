@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid Registration Number Format!" }, { status: 400 });
         }
 
-        const proctor = await prisma.proctorTable.findFirst({
+        const proctor = await prisma.convocationTable.findFirst({
             where: {
                 regNo: regNum
             },
