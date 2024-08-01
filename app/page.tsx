@@ -60,11 +60,13 @@ export default function Home() {
               <div className="flex flex-col gap-4">
                 <div>Certificate Counter Number: {proctor.seatNum}</div>
                 <div>Session: {proctor.session}</div>
+                <div>Name: {proctor.studentName}</div>
                 <div>School: {proctor.schoolName}</div>
               </div>
             ) : (
               <div className="flex flex-col gap-4">
                 <div>Seat Number: {proctor.seatNum}</div>
+                <div>Name: {proctor.studentName}</div>
                 <div>School: {proctor.schoolName}</div>
               </div>
             )}
