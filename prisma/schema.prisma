@@ -14,22 +14,22 @@ datasource db {
 }
 
 model ProctorTable {
-  id            String @id @default(cuid())
-  regNo         String
-  studentName   String
-  proctorName   String
-  employeeId    String
-  cabin         String
-  phoneNumber   String
+  id          String @id @default(cuid())
+  regNo       String
+  studentName String
+  proctorName String
+  employeeId  String
+  cabin       String
+  phoneNumber String
 }
 
 model ConvocationTable {
-  id String @id @default(cuid())
-  studentName String
-  regNo String
-  convocationNum String
-  session String
+  id             String @id @default(cuid())
+  studentName    String
+  regNo          String
+  seatNum String
+  session        String
   programmeGroup String
-  programmeName String
-  schoolName String
+  programmeName  String
+  schoolName     String
 }
