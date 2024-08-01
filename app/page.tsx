@@ -30,22 +30,10 @@ export default function Home() {
       toast.error(error.response.data.message);
     }
   };
-  // useEffect(() => {
-  //   const f = async () => {
-  //     const res = await axios.get("/api/book");
-  //     const all = res.data.seats.map((seat: any, idx: number) => {
-  //       if (seat.isBooked) return seat.seat;
-  //     });
-  //     setAllSeats(all);
-  //     console.log(all);
-  //   };
-  //   f();
-  // }, []);
 
   return (
     <div className=" bg-black min-h-screen ">
       <Navbar />
-
       <div className="flex flex-col items-center justify-center p-[1rem] h-screen -translate-y-32 gap-12">
         <div className="text-2xl font-semibold text-center text-white">
           Kindly Enter Your Registration Number
@@ -68,11 +56,11 @@ export default function Home() {
         </form>
         {proctor && (
           <div className="text-white flex flex-col gap-4 border border-b border-neutral-500 p-4 rounded-lg">
-            <div>Your convocation number is: {proctor.convocationNum}</div>
-            <div>Your session is: {proctor.session}</div>
-            <div>Your proctor programme group is: {proctor.programmeGroup}</div>
-            <div>Your programme name is: {proctor.programmeName}</div>
-            <div>Your school is: {proctor.schoolName}</div>
+            <div>Certificate Counter Number: {proctor.convocationNum}</div>
+            <div>Session: {proctor.session}</div>
+            <div>Programme Group: {proctor.programmeGroup}</div>
+            <div>Programme Name: {proctor.programmeName}</div>
+            <div>School: {proctor.schoolName}</div>
           </div>
         )}
       </div>

@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
         });
 
         if (!proctor) {
-            return NextResponse.json({ message: "No proctor found!" }, { status: 404 });
+            return NextResponse.json({ message: "No detail found!" }, { status: 404 });
         }
 
-        return NextResponse.json({ message: "No Proctor Found!", proctor: proctor }, { status: 200 });
+        return NextResponse.json({ message: "No detail Found!", proctor: proctor }, { status: 200 });
     } catch (error: any) {
-        return NextResponse.json({ message: "No Proctor Found!" }, { status: 400 });
+        return NextResponse.json({ message: "No detail Found!" }, { status: 400 });
     }
 };
