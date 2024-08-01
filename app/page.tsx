@@ -58,7 +58,7 @@ export default function Home() {
           <div className="text-white flex flex-col gap-4 border border-b border-neutral-500 p-4 rounded-lg">
             {proctor.session != "-" ? (
               <div className="flex flex-col gap-4">
-                <div>Certificate Counter Number: {proctor.convocationNum}</div>
+                <div>Certificate Counter Number: {proctor.seatNum}</div>
                 <div>Session: {proctor.session}</div>
                 <div>School: {proctor.schoolName}</div>
               </div>
